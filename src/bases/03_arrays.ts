@@ -5,7 +5,7 @@ export interface user {
 }
 
 const diego: user = {
-    nombre: "diego",
+    nombre: "diegooo",
     edad: 23,
     activo: true
 }

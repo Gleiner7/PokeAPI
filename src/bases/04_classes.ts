@@ -49,8 +49,8 @@ export class Usuario {
 
 async getMoves(): Promise<CharacterData>{
     try {
-        const { data } =  await axios.get <RickapiResponse>('https://rickandmortyapi.com/api/character/77');
-        const { image = '', name = 'Desconoscido', status = 'N/A', id } = data;
+        const { data : datosRick } =  await axios.get <RickapiResponse>('https://rickandmortyapi.com/api/character/77');
+        const { image = '', name = 'Desconoscido', status = 'N/A', id } = datosRick;
         console.log(image);
 
         return { image, name, status, id };

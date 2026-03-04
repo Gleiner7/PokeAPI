@@ -3,9 +3,13 @@ import typescriptLogo from "./typescript.svg";
 import viteLogo from "/vite.svg";
 import { setupCounter } from "./counter.ts";
 import { userClass } from "./bases/04_classes.ts";
+import { RickApiAdapter } from "./bases/api/rickApi.adapter.ts";
+import { Usuario } from "./bases/05_inyeccion_Dependencias.ts";
 
+const httpAdapter = new RickApiAdapter();
+const usuario = new Usuario(1, "Diego", 34, httpAdapter);
 async function loadData() {
-  const dataRM = await userClass.getMoves();
+  const dataRM = await usuario.getCharacter(77);
   // const urlimage = await userClass.getMoves();
 
 
@@ -22,11 +26,10 @@ async function loadData() {
       <h2>${userClass.imageUrl}</h2>
       
       
-    <h1> Objeto usando Rikc y Morty <h1>   
-
-    <p> Este es el capitulo ${dataRM.id} y ese capitulo se llama <b> ${dataRM.name} </b> </p>
-    <h2>${userClass.getMoves()}</h2>
-      <img src="${dataRM.image}" alt="Imagen del usuario" />
+    <h1>Objeto usando Rick y Morty con Inyección de dependencias</h1>
+      <p>${usuario.saludar()}</p>
+      <p>Personaje: ${dataRM.name} (id: ${dataRM.id})</p>
+      <img src="${dataRM.image}" alt="${dataRM.name}">
       
 
       

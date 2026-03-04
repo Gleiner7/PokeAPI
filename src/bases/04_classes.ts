@@ -21,7 +21,15 @@
 
 //------------------------------------------------------------------------------------------------------------------------------
 
+
 import axios from 'axios';
+type CharacterData = {
+    image: string;
+    name: string;
+    status: string;
+    id: number;
+};
+
 export class Usuario {
   //METODOS
     constructor(
@@ -38,7 +46,7 @@ export class Usuario {
     return (`Hola, soy ${this.nombre} conn el id ${this.id}`);
     }
 
-async getMoves() {
+async getMoves(): Promise<CharacterData>{
     try {
         const { data } =  await axios.get ('https://rickandmortyapi.com/api/character/77');
         const { image = '', name = 'Desconoscido', status = 'N/A', id } = data;

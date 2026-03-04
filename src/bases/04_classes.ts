@@ -20,31 +20,31 @@
 
 //------------------------------------------------------------------------------------------------------------------------------
 
-export class Usuarios {
-
+import axios from 'axios';
+export class Usuario {
+  //METODOS
     constructor(
-    public readonly nombre: string,
-    public readonly edad: number,
-    public readonly telefono?: string,
-    public readonly id?: string
-    ) {}
+    public id: number,
+    public nombre: string,
+    public edad: number
+    ) { }
 
     get imageUrl(): string {
-    return `https://imagenUser/${this.id ?? "default"}`;
+    return `https://imagenUser.com${this.id}`;
     }
 
     saludar(): string {
-    return `Hola, soy ${this.nombre} y tengo ${this.edad} años y mi numero de telefono es ${this.telefono ?? "No registrado"}`;
+    return (`Hola, soy ${this.nombre} conn el id ${this.id}`);
+    }
+
+    async getMoves() {
+    // const moves  = 10;
+    const resp = await axios.get('https://rickandmortyapi.com/api/episode');
+    console.log(resp);
+    //return resp;
     }
 }
-
 //Crear un objeto tipo Usuario
-const userClass = new Usuarios(
-    "Diego",
-    30,
-    "3001234567",
-    "123"
-);
+export const userClass = new Usuario(1, "Diego", 34);
 
-console.log(userClass.saludar());
-console.log(userClass.imageUrl);
+userClass.getMoves();
